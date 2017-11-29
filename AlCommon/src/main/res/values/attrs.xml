@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="advertBar">
+        <!-- 字体大小-->
+        <attr name="bottomDistance" format="integer"/>
+    </declare-styleable>
+</resources>

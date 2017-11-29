@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.al.test.http.HTTPActivity">
+
+
+    <TextView android:id="@+id/testmessage" android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="下载进度"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="download" android:text="下载测试"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:onClick="GET"
+        android:layout_height="wrap_content"
+        android:text="GET"/>
+    <Button
+        android:id="@+id/button2"
+        android:onClick="POST"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="POST"/>
+    <Button
+        android:id="@+id/button3"
+        android:onClick="GETString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="GETString"/>
+    <Button
+        android:id="@+id/button4"
+        android:onClick="POSTStirng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="POSTStirng"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:onClick="download"
+        android:layout_height="wrap_content"
+        android:text="Download"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Uploading"
+        android:text="Uploading"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="list"
+        android:text="List"/>
+
+</LinearLayout>
