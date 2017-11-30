@@ -1,19 +1,12 @@
-###使用说明
+
 >初始化
 
 >AlConfig.init()
-
   //初始化基础api
-  
    .baseUrl("http://v.juhe.cn/toutiao/")
-   
    //初始化下载文件保存路径
-   
    .downlaodFath(sdcardPath+"/AlDownload")
-   //
    .interceptors(interceptors);` 
-   
-   
    List<Interceptor> interceptors = new ArrayList<>();
    //比如日志拦截输
    interceptors.add(new LogInterceptor());
@@ -22,9 +15,7 @@
    
 > url说明
 AlHttp.Get(url,null,null,null)
-
 url:可以填写全链接或者是拼接基础api
-
 比如：
     //全链接
     AlHttp.Get("http://dldir1.qq.com/weixin/",null,null,null)
