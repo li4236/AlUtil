@@ -1,21 +1,27 @@
 package com.al.test.http;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.al.http.subscriber.AlSubscriber;
 import com.al.http.bean.AlInfo;
 import com.al.http.bean.DownLoadProgress;
+import com.al.http.config.AlConfig;
 import com.al.http.http.AlHttp;
+import com.al.http.subscriber.AlSubscriber;
 import com.al.test.R;
 import com.al.test.bean.NewsInfo;
+import com.al.test.other.HeadInterceptor;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import okhttp3.Interceptor;
 
 public class HTTPActivity extends AppCompatActivity {
 
@@ -29,6 +35,23 @@ public class HTTPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_http);
 
         mTextView = findViewById(R.id.testmessage);
+
+        //内置sd卡路径
+        String sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+        List<Interceptor> interceptors = new ArrayList<>();
+        //比如日志拦截输出
+//        interceptors.add(new LogInterceptor());
+//        网络统一头部添加处理
+        interceptors.add(new HeadInterceptor());
+
+       //初始化
+        AlConfig.init()
+                //初始化基础api
+                .baseUrl("http://v.juhe.cn/toutiao/")
+                //初始化下载文件保存路径
+                .downlaodFath(sdcardPath+"/AlDownload")
+                .interceptors(interceptors);
 
         map.put("type", "top");
 
@@ -72,7 +95,7 @@ public class HTTPActivity extends AppCompatActivity {
             @Override
             protected void onAlSuccess(AlInfo<String> alInfo) {
                 Log.e("PostString==", alInfo.getResult());
-
+                mTextView.setText(alInfo.getResult());
             }
 
             @Override
@@ -89,7 +112,7 @@ public class HTTPActivity extends AppCompatActivity {
             @Override
             protected void onAlSuccess(AlInfo<String> alInfo) {
                 Log.e("GetString===", alInfo.getResult());
-
+                mTextView.setText(alInfo.getResult());
             }
 
             @Override
@@ -107,7 +130,7 @@ public class HTTPActivity extends AppCompatActivity {
             protected void onAlSuccess(AlInfo<NewsInfo> t) {
 
                 Log.e("Post", t.toString());
-
+                mTextView.setText( "请求成功"+t.toString());
             }
 
             @Override
@@ -124,6 +147,7 @@ public class HTTPActivity extends AppCompatActivity {
             protected void onAlSuccess(AlInfo<NewsInfo> t) {
 
                 Log.e("Get", t.toString());
+                mTextView.setText( "请求成功"+t.toString());
 
             }
 
@@ -136,11 +160,12 @@ public class HTTPActivity extends AppCompatActivity {
 
     public void list(View view) {
 
-
+        //没有这种类型的api，不过我自己模拟成功的
 //
 //        {
 //            "reason": "成功的返回",
-//                "result": [
+//            "error_code": 0
+//            "result": [
 //            {
 //                "uniquekey": "ce4fb337ca171e90b02514762bba91dd",
 //                    "title": "肱二头肌训练时，常被人忽视的误区，教你正确的进行锻炼",
@@ -163,7 +188,7 @@ public class HTTPActivity extends AppCompatActivity {
 //            }
 //
 //    ],
-//            "error_code": 0
+//
 //        }
 
 

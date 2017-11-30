@@ -1,7 +1,7 @@
 package com.al.http.http;
 
 
-import android.support.annotation.NonNull;
+import com.al.http.config.AlConfig;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -16,10 +16,9 @@ public class RetrofitHelper {
 
     private final OkHttpClient mClient;
 
-    private Retrofit mRetrofit, mRetrofits;
+    private Retrofit mRetrofits;
 
     private RetrofitHelper() {
-
 
         mClient = OkHttpClientHelper.getInstance().getOkHttpClient();
     }
@@ -38,49 +37,22 @@ public class RetrofitHelper {
         return helper;
     }
 
-    /**
-     * @param m true = https false = http
-     * @return
-     */
-    //获取Retrofit对象
-    public Retrofit getRetrofit(boolean m) {
-
+    public Retrofit getRetrofit() {
 
         if (mRetrofits == null) {
-            mRetrofits = getBuild("http://v.juhe.cn/toutiao/");
-        }
+            mRetrofits = new Retrofit.Builder()
+                    .baseUrl(AlConfig.init().getBaseUrl())
 
-//        String bseUrl = m ? YLifeUrl.HTTPS : YLifeUrl.HTTP;
-//
-//        if (m){
-//            if (mRetrofits == null) {
-//                mRetrofits = getBuild(bseUrl);
-//            }
-//            return mRetrofits;
-//        }else {
-//
-//            if (mRetrofit == null) {
-//                mRetrofit = getBuild(bseUrl);
-//            }
-//
-//            return mRetrofit;
-//        }
+                    .addConverterFactory(GsonConverterFactory.create())  //添加Gson支持
+//                    .addConverterFactory(new ToStringConverterFactory())  //定义字符串形式支持
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())  //添加RxJava支持
+                    .client(mClient)                                            //关联okhttp
+                    .build();
+        }
 
         return mRetrofits;
 
 
-    }
-
-    @NonNull
-    private Retrofit getBuild(String bseUrl) {
-        return new Retrofit.Builder()
-                .baseUrl(bseUrl)
-
-                .addConverterFactory(GsonConverterFactory.create())  //添加Gson支持
-//                    .addConverterFactory(new ToStringConverterFactory())  //定义字符串形式支持
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())  //添加RxJava支持
-                .client(mClient)                                            //关联okhttp
-                .build();
     }
 
 

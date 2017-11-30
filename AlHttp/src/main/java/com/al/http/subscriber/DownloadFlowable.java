@@ -1,11 +1,8 @@
 package com.al.http.subscriber;
 
-import android.util.Log;
-
 import com.al.http.bean.AlInfo;
 import com.al.http.bean.DownLoadProgress;
-
-import org.al.common.utils.ComFileUtil;
+import com.al.http.config.AlConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,12 +31,8 @@ public class DownloadFlowable implements FlowableOnSubscribe<AlInfo<DownLoadProg
     @Override
     public void subscribe(FlowableEmitter<AlInfo<DownLoadProgress>> subscriber) throws Exception {
 
-        String path = ComFileUtil.mkdirs("aaa");
 
-        Log.e("li4236=", path + "===");
-
-
-        File file = new File(path + File.separator + fileName);
+        File file = new File(AlConfig.init().getDownlaodFath() + File.separator + fileName);
         saveFile(subscriber, file, responseBody);
     }
 

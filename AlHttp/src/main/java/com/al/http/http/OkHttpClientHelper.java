@@ -1,7 +1,8 @@
 package com.al.http.http;
 
 
-import java.util.List;
+import com.al.http.config.AlConfig;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -17,8 +18,6 @@ public class OkHttpClientHelper {
     private OkHttpClient mClient;
 
     private final static long TIMEOUT = 60;  //超时时间
-
-    private List<Interceptor> mInterceptors;
 
     private OkHttpClientHelper() {
 
@@ -56,8 +55,8 @@ public class OkHttpClientHelper {
 //                    .addInterceptor(new LogInterceptor())
 
 
-            if (mInterceptors != null && mInterceptors.size()>0){
-                for (Interceptor interceptor: mInterceptors) {
+            if (AlConfig.init().getInterceptors() != null && AlConfig.init().getInterceptors() .size()>0){
+                for (Interceptor interceptor: AlConfig.init().getInterceptors() ) {
                     builder.addInterceptor(interceptor);
                 }
             }

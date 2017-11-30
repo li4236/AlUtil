@@ -18,10 +18,6 @@
 package com.al.http.bean;
 
 
-/**
- * BaseResponse Data T
- * Created by Tamic on 2016-06-06.
- */
 public class AlInfo<T> {
     //结果码
 //    private int code = 1;

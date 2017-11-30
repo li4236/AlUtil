@@ -73,6 +73,7 @@ public class FunctionResult<T> implements Function<ResponseBody, AlInfo<T>> {
     }
 
     private AlInfo parseApiResult(String json, AlInfo alResponse) throws JSONException {
+
         if (TextUtils.isEmpty(json)) return null;
         JSONObject jsonObject = new JSONObject(json);
         if (jsonObject.has("error_code")) {
