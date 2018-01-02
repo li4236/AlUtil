@@ -1,4 +1,9 @@
 
+- 2018.1.2 添加两种mvp测试示例
+
+++++++++++++++++++++++++
+
+
 >初始化
      
      List<Interceptor> interceptors = new ArrayList<>();

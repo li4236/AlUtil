@@ -20,13 +20,10 @@ package com.al.http.bean;
 
 public class AlInfo<T> {
     //结果码
-//    private int code = 1;
     private String reason;
 
     private int error_code;
-//    /*错误信息:msg, error, message*/
-//    private String msg, error, message;
-    /*真实数据 data或者result*/
+
     private T  result;
 
     public int getCode() {
@@ -36,8 +33,6 @@ public class AlInfo<T> {
     public void setCode(int code) {
         this.error_code = code;
     }
-
-
 
     public T getResult() {
         return result;
